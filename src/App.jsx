@@ -8,7 +8,7 @@ export default function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
   const [message, setMessage] = useState("Hi!");
-  const contractAddress = "0xD4Faf1BFA6B244b07791933A3CF345357A6E119E";
+  const contractAddress = "0x3AA0493FF507F06d9278b5Efb58b0A99F4Ef16AE";
   const contractABI = abi.abi;
 
   const getAllWaves = async () => {
@@ -151,25 +151,22 @@ export default function App() {
         </div>
         
         <div className="bio">
-        Connect your Ethereum wallet and wave at me!
+        Connect your Ethereum wallet on Rinkeby and wave at me!
         </div>
 
         <label className="bio">Message: </label>
         <input type="text" name="message" onInput={handleInputChange} placeholder="Type here..."/>
 
 
-        <button className="waveButton" onClick={wave}>
-          Wave at Me
-        </button>
-
-        {/*
-        * If there is no currentAccount render this button
-        */}
-        {!currentAccount && (
+        {currentAccount ? 
+          <button className="waveButton" onClick={wave}>
+            Wave at Me
+          </button>
+        :
           <button className="waveButton" onClick={connectWallet}>
             Connect Wallet
           </button>
-        )}
+        }
 
         <div className="bio">
         Total number of waves:
